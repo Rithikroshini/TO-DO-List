@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TO-DO List</title>
+    <style>
+        body{
+            font-family:Arial, sans-serif;
+        }
+        .container{
+            max-width:500px;
+            margin:0 auto;
+            padding:20px;
+        }
+        h1{
+            text-align:center;
+        }
+        form h2{
+            margin-top:20px;
+        }
+        form input[type="text"],
+        form input[type="password"]{
+            display:block;
+            width:100%;
+            padding:10px;
+            margin-bottom:10px;
+        }
+        form button{
+            display:block;
+            width:100%;
+            padding:10px;
+            background-color:#4CAF50;
+            color:#fff;
+            border:none;
+            cursor:pointer;
+        }
+        ul{
+            list-style-type:none;
+            padding:0;
+        }
+        li{
+            margin-bottom:10px;
+        }
+        .hidden{
+            display:none;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>TO-DO List</h1>
+        <form id="loginForm">
+            <h2>Login</h2>
+            <input type="text" id="username" placeholder="Username" required>
+            <input type="password" id="password" placeholder="Password" required>
+            <button type="submit">Login</button>
+        </form>
+
+        <form id="todoForm" class="hidden">
+            <h2>Add New Task</h2>
+            <input type="text" id="task" placeholder="Task" required>
+            <button type="submit">Add Task</button>
+        </form>
+
+        <ul id="todolist" class="hidden"></ul>
+
+        <button id="logoutButton" class="hidden">Logout</button>
+    </div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function(){
+        const loginForm = document.getElementById('loginForm');
+        const todoForm = document.getElementById('todoForm');
+        const todoList = document.getElementById('todolist');
+        const logoutButton = document.getElementById('logoutButton');
+
+        
+        const validUsername = "Rithikroshini";
+        const validPassword = "Rithi@2";
+
+        loginForm.addEventListener('submit', function(e){
+            e.preventDefault();
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+
+            if(username === validUsername && password === validPassword){
+                
+                todoForm.classList.remove('hidden');
+                todoList.classList.remove('hidden');
+                logoutButton.classList.remove('hidden');
+                loginForm.classList.add('hidden');
+            } else {
+                alert("Invalid username or password!");
+            }
+        });
+
+        todoForm.addEventListener('submit', function(e){
+            e.preventDefault();
+            const task = document.getElementById('task').value;
+            const newTask = document.createElement("li");
+            newTask.textContent = task;
+            todoList.appendChild(newTask);
+            document.getElementById('task').value = "";
+        });
+
+        logoutButton.addEventListener('click', function(){
+            todoForm.classList.add('hidden');
+            todoList.classList.add('hidden');
+            logoutButton.classList.add('hidden');
+            loginForm.classList.remove('hidden');
+        });
+    });
+</script>
+</body>
+</html>
