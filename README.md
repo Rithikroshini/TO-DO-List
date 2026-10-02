@@ -1,1 +1,1 @@
-# FSWD-Practice
+A simple and responsive TODO List web application built with HTML, CSS, and JavaScript. Users can securely log in, add, edit, and delete tasks, track progress, and manage daily activities with ease. Clean UI, keyboard support, and efficient task handling make it perfect for productivity.
